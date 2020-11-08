@@ -1,0 +1,65 @@
+#include<stdio.h>
+int main()
+{
+	int n;
+	printf("enter no of rows in a matrix");
+	scanf("%d",&n);
+	int i,j,a[n][n];
+	printf("enter elements in horizontal direction line by line:");
+	for(i=0;i<n;i++)					//reading of elements into 2 dimentional array of matrix
+	{
+	for(j=0;j<n;j++)
+	{
+	scanf("%d",&a[i][j]);
+	}
+	}
+	printf("input of matrix:\n");
+	for(i=0;i<n;i++)					//print the matrix format of input
+	{
+	for(j=0;j<n;j++)
+	{
+	printf("%d\t",a[i][j]);
+	}
+	printf("\n");
+	}
+	printf("\n");
+	int p=0,x,k,temp1,temp2;
+	while(p!=n-1)
+	{	
+	for(i=0;i<p/2+1;i++)
+	{
+		temp1=a[i][n-i-1];
+		for(j=n-i-1;j!=i;j--)		//loop to rotate the top line of matrix
+		{
+			a[i][j]=a[i][j-1];
+		}
+		temp2=a[n-i-1][n-i-1];
+		for(k=n-i-1;k!=i;k--)		//loop to rotate right side of matrix
+		{
+			a[k][n-i-1]=a[k-1][n-i-1];
+		}
+		a[i+1][n-i-1]=temp1;
+		temp1=a[n-i-1][i];
+		for(j=i;j<n-i-1;j++)		//loop to rotate the down side of matrix
+		{
+			a[n-i-1][j]=a[n-i-1][j+1];
+		}
+		a[n-i-1][j-1]=temp2;
+		for(k=i;k<n-i-1;k++)		//loop to rotate the left side of matrix
+		{
+			a[k][i]=a[k+1][i];
+		}
+		a[n-i-2][i]=temp1;
+	 }
+	 p++;
+	}
+	printf("output of matrix:\n");
+	for(i=0;i<n;i++)				//to print the output of matrix
+	{	
+	for(j=0;j<n;j++)
+	{
+	printf("%d\t",a[i][j]);
+	}
+	printf("\n");
+	}
+}
